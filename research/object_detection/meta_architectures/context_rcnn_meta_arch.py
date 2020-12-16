@@ -92,7 +92,7 @@ class ContextRCNNMetaArch(faster_rcnn_meta_arch.FasterRCNNMetaArch):
                num_attention_heads=1,
                num_attention_layers=1,
                attention_position=(
-                   faster_rcnn_pb2.AttentionPosition.POST_BOX_CLASSIFIER)
+                   faster_rcnn_pb2.AttentionPosition.Value('POST_BOX_CLASSIFIER'))
                ):
     """ContextRCNNMetaArch Constructor.
 
@@ -592,7 +592,7 @@ class ContextRCNNMetaArch(faster_rcnn_meta_arch.FasterRCNNMetaArch):
       self, flattened_box_features, num_proposals, context_features,
       valid_context_size,
       attention_position=(
-          faster_rcnn_pb2.AttentionPosition.POST_BOX_CLASSIFIER)):
+          faster_rcnn_pb2.AttentionPosition.Value('POST_BOX_CLASSIFIER'))):
     if self._feature_extractor_for_box_classifier_features == (
         _UNINITIALIZED_FEATURE_EXTRACTOR):
       self._feature_extractor_for_box_classifier_features = (
@@ -610,7 +610,7 @@ class ContextRCNNMetaArch(faster_rcnn_meta_arch.FasterRCNNMetaArch):
               scope=self.second_stage_feature_extractor_scope))
 
     if self._attention_position == (
-        faster_rcnn_pb2.AttentionPosition.POST_BOX_CLASSIFIER):
+        faster_rcnn_pb2.AttentionPosition.Value('POST_BOX_CLASSIFIER')):
       attention_features = self._context_feature_extract_fn(
           box_features=box_classifier_features,
           num_proposals=num_proposals,
